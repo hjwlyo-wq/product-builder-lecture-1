@@ -6,6 +6,19 @@
     --text-color: #333;
     --card-background: #ffffff;
     --shadow-color: rgba(0, 0, 0, 0.1);
+    --number-bg: #eee;
+    --list-bg: #f9f9f9;
+    --border-color: #eee;
+}
+
+body.dark-mode {
+    --background-color: #1a1a2e;
+    --text-color: #f0f4f8;
+    --card-background: #16213e;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --number-bg: #0f3460;
+    --list-bg: #1a1a2e;
+    --border-color: #0f3460;
 }
 
 body {
@@ -17,6 +30,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -27,6 +41,28 @@ body {
     box-shadow: 0 10px 30px var(--shadow-color);
     width: 90%;
     max-width: 500px;
+    position: relative;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--primary-color);
+    color: white;
 }
 
 h1 {
@@ -45,7 +81,7 @@ h1 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #eee;
+    background-color: var(--number-bg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,10 +111,8 @@ h1 {
     box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
 }
 
-
-
 h2 {
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
     padding-top: 20px;
     margin-top: 20px;
 }
@@ -91,9 +125,10 @@ h2 {
 }
 
 #previous-draws li {
-    background-color: #f9f9f9;
+    background-color: var(--list-bg);
     margin: 5px 0;
     padding: 10px;
     border-radius: 5px;
     font-size: 0.9rem;
+    border: 1px solid var(--border-color);
 }
