@@ -132,3 +132,55 @@ h2 {
     font-size: 0.9rem;
     border: 1px solid var(--border-color);
 }
+
+.contact-section {
+    margin-top: 40px;
+    border-top: 2px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.contact-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    border-top: none;
+    padding-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--number-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+#submit-btn {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+#submit-btn:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+}
