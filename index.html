@@ -3,27 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animal Look Test & Lotto Generator</title>
+    <title>AI Animal Look Test & Lucky Lotto Hub</title>
+    <meta name="description" content="Discover your animal twin with our AI-powered Animal Look Test and get your lucky lotto numbers today!">
     <meta name="google-adsense-account" content="ca-pub-8573632629207761">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8573632629207761"
      crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <button class="theme-toggle" id="theme-toggle">Dark Mode</button>
-        
-        <section class="animal-test-section">
-            <h1>Animal Look AI Test</h1>
-            <p class="subtitle">Upload your photo to find out your animal twin!</p>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">AI Hub</a>
+            <ul class="nav-menu">
+                <li><a href="#animal-test">Animal Test</a></li>
+                <li><a href="#lotto">Lotto</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="theme-toggle" id="theme-toggle">Dark Mode</button>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Your Ultimate AI Fun & Luck Hub</h1>
+            <p>Combining advanced Machine Learning with everyday luck.</p>
+        </header>
+
+        <!-- Animal Test Section -->
+        <section id="animal-test" class="content-section card">
+            <div class="section-header">
+                <h2>🐶 AI Animal Look Test 🐱</h2>
+                <p>Our AI analyzes your facial features to find your closest animal match.</p>
+            </div>
             
             <div class="upload-container" id="drop-area">
                 <input type="file" id="image-upload" accept="image/*" hidden>
                 <div class="upload-icon">📸</div>
-                <p>Drag & Drop or Click to Upload</p>
-                <button id="upload-btn">Select Photo</button>
+                <p>Drag & Drop your photo here or click to browse</p>
+                <button id="upload-btn" class="btn-secondary">Select Photo</button>
             </div>
 
             <div id="image-preview-container" style="display: none;">
@@ -32,21 +54,34 @@
 
             <div id="loading" class="loading-spinner" style="display: none;">
                 <div class="spinner"></div>
-                <p>Analyzing your features...</p>
+                <p>Our AI is analyzing your features...</p>
             </div>
 
             <div id="result-container"></div>
             
             <div class="recent-results" id="recent-animal-results" style="display: none;">
-                <h3>Recent Animal Tests</h3>
+                <h3>Recent Analysis History</h3>
                 <ul id="animal-history-list"></ul>
+            </div>
+        </section>
+
+        <!-- How it Works Section (Rich Content) -->
+        <section id="about" class="content-section">
+            <div class="text-content">
+                <h2>How our AI Animal Face Test Works</h2>
+                <p>We utilize <strong>Google's Teachable Machine</strong> technology, built on <em>TensorFlow.js</em>, to provide real-time image recognition in your browser. Our model has been trained on thousands of images of dogs and cats to identify the subtle nuances in facial structure, eye shape, and expression.</p>
+                <p>Your privacy is important to us: all image processing happens locally on your device. Your photos are never uploaded to our servers, ensuring 100% data privacy while you have fun discovering your animal twin.</p>
             </div>
         </section>
 
         <hr class="section-divider">
 
-        <section class="lotto-section">
-            <h2>Lotto Number Generator</h2>
+        <!-- Lotto Section -->
+        <section id="lotto" class="content-section card">
+            <div class="section-header">
+                <h2>🍀 Lucky Lotto Generator</h2>
+                <p>Need numbers for your next draw? Let our algorithm generate them for you.</p>
+            </div>
             <div class="lotto-numbers">
                 <span class="number"></span>
                 <span class="number"></span>
@@ -56,26 +91,68 @@
                 <span class="number"></span>
             </div>
             <button id="generate-btn" class="btn-primary">Generate Lucky Numbers</button>
+            
             <div class="history-container">
-                <h3>Previous Draws</h3>
+                <h3>Previous Generation Results</h3>
                 <ul id="previous-draws"></ul>
             </div>
         </section>
 
-        <section class="contact-section">
-            <h2>Partnership Inquiry</h2>
+        <!-- Lotto Tips (Rich Content) -->
+        <section class="content-section">
+            <div class="text-content">
+                <h2>Smart Tips for Lotto Players</h2>
+                <ul>
+                    <li><strong>Mix it up:</strong> Try a combination of both odd and even numbers.</li>
+                    <li><strong>Consistency:</strong> Some people prefer playing the same numbers, while others trust random generation.</li>
+                    <li><strong>Play Responsibly:</strong> Lottery games should be for entertainment purposes only.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="content-section card">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Is this test scientifically accurate?</h3>
+                <p>This is a fun tool based on AI pattern recognition. While it's great for entertainment, it's not a biological classification!</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you store my photos?</h3>
+                <p>No. All analysis is done via JavaScript in your browser. Your image never leaves your computer.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="content-section card">
+            <h2>Partnership & Feedback</h2>
+            <p>Interested in collaborating or have suggestions to improve our AI?</p>
             <form action="https://formspree.io/f/mdalvpob" method="POST" class="contact-form">
                 <div class="form-group">
                     <input type="email" name="email" placeholder="Your Email Address" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" placeholder="How can we help you?" required></textarea>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
                 </div>
                 <button type="submit" id="submit-btn" class="btn-secondary">Send Message</button>
             </form>
         </section>
 
-        <div id="disqus_thread"></div>
+        <!-- Disqus Section -->
+        <section class="comment-section card">
+            <h2>Join the Conversation</h2>
+            <div id="disqus_thread"></div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+            <p>&copy; 2026 AI Hub. All rights reserved.</p>
+        </footer>
+
         <script>
             (function() {
             var d = document, s = d.createElement('script');
