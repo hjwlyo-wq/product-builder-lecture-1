@@ -1,57 +1,101 @@
-const generateBtn = document.getElementById('generate-btn');
-const lottoNumbers = document.querySelectorAll('.number');
-const previousDrawsList = document.getElementById('previous-draws');
+
+// Theme Toggle
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Theme Toggle Logic
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme === 'dark') {
-    body.classList.add('dark-mode');
-    themeToggle.textContent = 'Light Mode';
-}
-
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    
-    let theme = 'light';
-    if (body.classList.contains('dark-mode')) {
-        theme = 'dark';
-        themeToggle.textContent = 'Light Mode';
-    } else {
-        themeToggle.textContent = 'Dark Mode';
-    }
-    localStorage.setItem('theme', theme);
+    themeToggle.textContent = body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
 });
 
-// Lotto Generation Logic
+// Lotto Generator
+const generateBtn = document.getElementById('generate-btn');
+const numberSpans = document.querySelectorAll('.number');
+const previousDrawsList = document.getElementById('previous-draws');
+
 generateBtn.addEventListener('click', () => {
-    const numbers = new Set();
-    while (numbers.size < 6) {
-        numbers.add(Math.floor(Math.random() * 45) + 1);
+    const numbers = [];
+    while (numbers.length < 6) {
+        const rand = Math.floor(Math.random() * 45) + 1;
+        if (!numbers.includes(rand)) {
+            numbers.push(rand);
+        }
     }
+    numbers.sort((a, b) => a - b);
 
-    const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
-
-    lottoNumbers.forEach((numberEl, index) => {
-        numberEl.textContent = sortedNumbers[index];
-        numberEl.style.backgroundColor = getNumberColor(sortedNumbers[index]);
-        numberEl.style.color = 'white';
+    numberSpans.forEach((span, index) => {
+        span.textContent = numbers[index];
     });
 
-    addPreviousDraw(sortedNumbers);
-});
-
-function getNumberColor(number) {
-    if (number <= 10) return '#f39c12'; // Yellow
-    if (number <= 20) return '#3498db'; // Blue
-    if (number <= 30) return '#e74c3c'; // Red
-    if (number <= 40) return '#2ecc71'; // Green
-    return '#9b59b6'; // Purple
-}
-
-function addPreviousDraw(numbers) {
     const li = document.createElement('li');
     li.textContent = numbers.join(', ');
     previousDrawsList.prepend(li);
+});
+
+// Animal Look Test (Teachable Machine)
+const URL = "https://teachablemachine.withgoogle.com/models/1IuuXyyng/";
+let model, maxPredictions;
+
+const uploadBtn = document.getElementById('upload-btn');
+const imageUpload = document.getElementById('image-upload');
+const imagePreview = document.getElementById('image-preview');
+const resultContainer = document.getElementById('result-container');
+const loadingText = document.getElementById('loading');
+
+async function init() {
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+}
+
+uploadBtn.addEventListener('click', () => {
+    imageUpload.click();
+});
+
+imageUpload.addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+            
+            if (!model) {
+                loadingText.style.display = 'block';
+                await init();
+            }
+            
+            predict();
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+async function predict() {
+    loadingText.style.display = 'block';
+    resultContainer.innerHTML = '';
+    
+    // Prediction 1: run input through teachable machine model
+    const prediction = await model.predict(imagePreview);
+    
+    loadingText.style.display = 'none';
+    
+    prediction.sort((a, b) => b.probability - a.probability);
+    
+    const topResult = prediction[0];
+    const percentage = (topResult.probability * 100).toFixed(0);
+    
+    let animalType = topResult.className;
+    let message = "";
+    
+    if (animalType === "Dog") {
+        message = `🐶 You look like a Dog! (${percentage}%)`;
+    } else if (animalType === "Cat") {
+        message = `🐱 You look like a Cat! (${percentage}%)`;
+    } else {
+        message = `${animalType} look! (${percentage}%)`;
+    }
+    
+    resultContainer.innerHTML = message;
 }

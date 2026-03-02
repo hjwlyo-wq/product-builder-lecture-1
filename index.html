@@ -4,26 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>Animal Look Test (Dog vs Cat)</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
     <div class="container">
         <button class="theme-toggle" id="theme-toggle">Dark Mode</button>
-        <h1>Lotto Number Generator</h1>
-        <div class="lotto-numbers">
-            <span class="number"></span>
-            <span class="number"></span>
-            <span class="number"></span>
-            <span class="number"></span>
-            <span class="number"></span>
-            <span class="number"></span>
+        <h1>Animal Look Test</h1>
+        <p>Are you more like a Dog or a Cat?</p>
+        
+        <div class="upload-section">
+            <input type="file" id="image-upload" accept="image/*" hidden>
+            <button id="upload-btn">Upload Your Photo</button>
+            <div id="image-preview-container">
+                <img id="image-preview" src="#" alt="Your photo" style="display: none; max-width: 100%; border-radius: 10px; margin-top: 20px;">
+            </div>
+            <div id="loading" style="display: none; margin-top: 10px;">Analyzing...</div>
+            <div id="result-container" style="margin-top: 20px; font-size: 1.5rem; font-weight: bold;"></div>
         </div>
-        <button id="generate-btn">Generate Numbers</button>
-        <h2>Previous Draws</h2>
-        <ul id="previous-draws"></ul>
 
-        <div class="contact-section">
+        <div class="lotto-section" style="margin-top: 100px; border-top: 1px solid #ccc; padding-top: 50px;">
+            <h2>Bonus: Lotto Number Generator</h2>
+            <div class="lotto-numbers">
+                <span class="number"></span>
+                <span class="number"></span>
+                <span class="number"></span>
+                <span class="number"></span>
+                <span class="number"></span>
+                <span class="number"></span>
+            </div>
+            <button id="generate-btn">Generate Numbers</button>
+            <h3>Previous Draws</h3>
+            <ul id="previous-draws"></ul>
+        </div>
+
             <h2>Partnership Inquiry</h2>
             <form action="https://formspree.io/f/mdalvpob" method="POST">
                 <div class="form-group">
