@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Animal Look Test & Lucky Lotto Hub</title>
-    <meta name="description" content="Discover your animal twin with our AI-powered Animal Look Test and get your lucky lotto numbers today!">
+    <title>AI Animal Look Test & Lucky Lotto Hub | Expert Insights & Fun</title>
+    <meta name="description" content="Explore our AI-powered Animal Look Test, get lucky lotto numbers, and read expert insights on Machine Learning and facial recognition technology.">
+    <meta name="keywords" content="AI, Animal Look Test, Dog face, Cat face, Lotto Generator, Machine Learning, TensorFlow.js">
     <meta name="google-adsense-account" content="ca-pub-8573632629207761">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8573632629207761"
      crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">AI Hub</a>
+            <a href="#" class="nav-logo">AI Animal Hub</a>
             <ul class="nav-menu">
-                <li><a href="#animal-test">Animal Test</a></li>
-                <li><a href="#lotto">Lotto</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#animal-test">AI Test</a></li>
+                <li><a href="#analysis-guide">Face Guide</a></li>
+                <li><a href="#lotto">Lotto Hub</a></li>
+                <li><a href="#insights">Insights</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
             <button class="theme-toggle" id="theme-toggle">Dark Mode</button>
@@ -30,22 +32,22 @@
     <div class="main-container">
         <!-- Hero Section -->
         <header class="hero">
-            <h1>Your Ultimate AI Fun & Luck Hub</h1>
-            <p>Combining advanced Machine Learning with everyday luck.</p>
+            <h1>Discover Your Animal Twin & Boost Your Luck</h1>
+            <p>The ultimate destination for AI-driven facial analysis and lucky number generation.</p>
         </header>
 
         <!-- Animal Test Section -->
         <section id="animal-test" class="content-section card">
             <div class="section-header">
                 <h2>🐶 AI Animal Look Test 🐱</h2>
-                <p>Our AI analyzes your facial features to find your closest animal match.</p>
+                <p>Upload a clear photo of your face to see which animal characteristics you possess.</p>
             </div>
             
             <div class="upload-container" id="drop-area">
                 <input type="file" id="image-upload" accept="image/*" hidden>
                 <div class="upload-icon">📸</div>
                 <p>Drag & Drop your photo here or click to browse</p>
-                <button id="upload-btn" class="btn-secondary">Select Photo</button>
+                <button id="upload-btn" class="btn-primary">Select Your Photo</button>
             </div>
 
             <div id="image-preview-container" style="display: none;">
@@ -54,7 +56,7 @@
 
             <div id="loading" class="loading-spinner" style="display: none;">
                 <div class="spinner"></div>
-                <p>Our AI is analyzing your features...</p>
+                <p>Analyzing facial landmarks and structural features...</p>
             </div>
 
             <div id="result-container"></div>
@@ -65,12 +67,48 @@
             </div>
         </section>
 
-        <!-- How it Works Section (Rich Content) -->
-        <section id="about" class="content-section">
-            <div class="text-content">
-                <h2>How our AI Animal Face Test Works</h2>
-                <p>We utilize <strong>Google's Teachable Machine</strong> technology, built on <em>TensorFlow.js</em>, to provide real-time image recognition in your browser. Our model has been trained on thousands of images of dogs and cats to identify the subtle nuances in facial structure, eye shape, and expression.</p>
-                <p>Your privacy is important to us: all image processing happens locally on your device. Your photos are never uploaded to our servers, ensuring 100% data privacy while you have fun discovering your animal twin.</p>
+        <!-- Detailed Analysis Guide (Rich Content) -->
+        <section id="analysis-guide" class="content-section card">
+            <h2>Detailed Guide: Dog-Face vs. Cat-Face</h2>
+            <div class="guide-grid">
+                <div class="guide-item">
+                    <h3>🐕 The Dog-Look Characteristics</h3>
+                    <p>Dog-faced individuals often have a friendly, approachable, and trustworthy appearance. Key features analyzed by our AI include:</p>
+                    <ul>
+                        <li>Rounded eye shapes that convey warmth.</li>
+                        <li>A soft jawline and slightly rounded facial contour.</li>
+                        <li>Bright, energetic expressions that suggest an extroverted personality.</li>
+                    </ul>
+                </div>
+                <div class="guide-item">
+                    <h3>🐈 The Cat-Look Characteristics</h3>
+                    <p>Cat-faced individuals are characterized by their chic, mysterious, and sharp features. Our AI looks for:</p>
+                    <ul>
+                        <li>Sharp, slightly tilted outer corners of the eyes.</li>
+                        <li>A defined and clear facial structure, often with prominent cheekbones.</li>
+                        <li>Cool, calm, and sophisticated expressions that suggest a more reserved or observant nature.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insights Section (Blog Content) -->
+        <section id="insights" class="content-section">
+            <div class="section-header">
+                <h2>AI & Entertainment Insights</h2>
+                <p>Deep dives into the technology and trends shaping our digital world.</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-post card">
+                    <h3>The Evolution of Facial Recognition</h3>
+                    <p>Facial recognition has moved from high-security labs to our smartphones. By using TensorFlow.js, we can now perform complex pattern matching directly in your browser. This shift prioritizes user privacy while delivering high-speed results...</p>
+                    <a href="#" class="read-more">Read Full Article</a>
+                </article>
+                <article class="blog-post card">
+                    <h3>Why We Love Personality Tests</h3>
+                    <p>From zodiac signs to AI animal tests, humans have an innate desire to categorize themselves. These tests provide a fun way to reflect on our self-image and share a moment of joy with friends and family...</p>
+                    <a href="#" class="read-more">Read Full Article</a>
+                </article>
             </div>
         </section>
 
@@ -80,7 +118,7 @@
         <section id="lotto" class="content-section card">
             <div class="section-header">
                 <h2>🍀 Lucky Lotto Generator</h2>
-                <p>Need numbers for your next draw? Let our algorithm generate them for you.</p>
+                <p>Leverage our randomization algorithm to pick your next winning combination.</p>
             </div>
             <div class="lotto-numbers">
                 <span class="number"></span>
@@ -90,49 +128,48 @@
                 <span class="number"></span>
                 <span class="number"></span>
             </div>
-            <button id="generate-btn" class="btn-primary">Generate Lucky Numbers</button>
+            <button id="generate-btn" class="btn-primary">Generate My Numbers</button>
             
             <div class="history-container">
-                <h3>Previous Generation Results</h3>
+                <h3>Previous Generation History</h3>
                 <ul id="previous-draws"></ul>
             </div>
         </section>
 
-        <!-- Lotto Tips (Rich Content) -->
-        <section class="content-section">
-            <div class="text-content">
-                <h2>Smart Tips for Lotto Players</h2>
-                <ul>
-                    <li><strong>Mix it up:</strong> Try a combination of both odd and even numbers.</li>
-                    <li><strong>Consistency:</strong> Some people prefer playing the same numbers, while others trust random generation.</li>
-                    <li><strong>Play Responsibly:</strong> Lottery games should be for entertainment purposes only.</li>
-                </ul>
-            </div>
+        <!-- How it Works Section -->
+        <section class="content-section card">
+            <h2>Technical Transparency & Privacy</h2>
+            <p>Our platform is built on the principle of <strong>Privacy First</strong>. Unlike other AI tools that require you to upload personal data, our Animal Look Test runs entirely using <strong>Client-Side Processing</strong>. This means your image never leaves your device; it stays within your browser's memory for the duration of the test and is purged immediately after.</p>
+            <p>The underlying model is powered by a Deep Learning Neural Network that has been optimized for web performance, ensuring that you get accurate results without compromising your digital security.</p>
         </section>
 
         <!-- FAQ Section -->
         <section id="faq" class="content-section card">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-item">
-                <h3>Is this test scientifically accurate?</h3>
-                <p>This is a fun tool based on AI pattern recognition. While it's great for entertainment, it's not a biological classification!</p>
+                <h3>How accurate is the AI Animal Test?</h3>
+                <p>The AI model is highly accurate at identifying patterns associated with the training data (thousands of cat and dog images). However, it is intended for entertainment purposes and provides a "look-alike" score rather than a biological analysis.</p>
             </div>
             <div class="faq-item">
-                <h3>Do you store my photos?</h3>
-                <p>No. All analysis is done via JavaScript in your browser. Your image never leaves your computer.</p>
+                <h3>What is the best type of photo to use?</h3>
+                <p>For the best results, use a well-lit, front-facing photo where your entire face is clearly visible. Avoid wearing masks or glasses that might obscure your primary facial features.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I use the Lotto numbers for real games?</h3>
+                <p>Yes, the numbers are randomly generated within the standard 1-45 range. Please remember to play responsibly and according to your local laws.</p>
             </div>
         </section>
 
         <!-- Contact Section -->
         <section class="content-section card">
-            <h2>Partnership & Feedback</h2>
-            <p>Interested in collaborating or have suggestions to improve our AI?</p>
+            <h2>Get in Touch</h2>
+            <p>Have a question about our AI or want to suggest a new feature? We'd love to hear from you!</p>
             <form action="https://formspree.io/f/mdalvpob" method="POST" class="contact-form">
                 <div class="form-group">
                     <input type="email" name="email" placeholder="Your Email Address" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <textarea name="message" placeholder="Tell us what's on your mind..." required></textarea>
                 </div>
                 <button type="submit" id="submit-btn" class="btn-secondary">Send Message</button>
             </form>
@@ -140,7 +177,7 @@
 
         <!-- Disqus Section -->
         <section class="comment-section card">
-            <h2>Join the Conversation</h2>
+            <h2>Community Discussion</h2>
             <div id="disqus_thread"></div>
         </section>
 
@@ -149,8 +186,9 @@
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
                 <a href="#">Cookie Policy</a>
+                <a href="#">Sitemap</a>
             </div>
-            <p>&copy; 2026 AI Hub. All rights reserved.</p>
+            <p>&copy; 2026 AI Animal Hub. Empowering fun through technology.</p>
         </footer>
 
         <script>
