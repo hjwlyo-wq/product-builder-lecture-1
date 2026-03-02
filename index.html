@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animal Look Test (Dog vs Cat)</title>
+    <title>Animal Look Test & Lotto Generator</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -12,21 +11,39 @@
 <body>
     <div class="container">
         <button class="theme-toggle" id="theme-toggle">Dark Mode</button>
-        <h1>Animal Look Test</h1>
-        <p>Are you more like a Dog or a Cat?</p>
         
-        <div class="upload-section">
-            <input type="file" id="image-upload" accept="image/*" hidden>
-            <button id="upload-btn">Upload Your Photo</button>
-            <div id="image-preview-container">
-                <img id="image-preview" src="#" alt="Your photo" style="display: none; max-width: 100%; border-radius: 10px; margin-top: 20px;">
+        <section class="animal-test-section">
+            <h1>Animal Look AI Test</h1>
+            <p class="subtitle">Upload your photo to find out your animal twin!</p>
+            
+            <div class="upload-container" id="drop-area">
+                <input type="file" id="image-upload" accept="image/*" hidden>
+                <div class="upload-icon">📸</div>
+                <p>Drag & Drop or Click to Upload</p>
+                <button id="upload-btn">Select Photo</button>
             </div>
-            <div id="loading" style="display: none; margin-top: 10px;">Analyzing...</div>
-            <div id="result-container" style="margin-top: 20px; font-size: 1.5rem; font-weight: bold;"></div>
-        </div>
 
-        <div class="lotto-section" style="margin-top: 100px; border-top: 1px solid #ccc; padding-top: 50px;">
-            <h2>Bonus: Lotto Number Generator</h2>
+            <div id="image-preview-container" style="display: none;">
+                <img id="image-preview" src="#" alt="Your photo">
+            </div>
+
+            <div id="loading" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing your features...</p>
+            </div>
+
+            <div id="result-container"></div>
+            
+            <div class="recent-results" id="recent-animal-results" style="display: none;">
+                <h3>Recent Animal Tests</h3>
+                <ul id="animal-history-list"></ul>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section class="lotto-section">
+            <h2>Lotto Number Generator</h2>
             <div class="lotto-numbers">
                 <span class="number"></span>
                 <span class="number"></span>
@@ -35,35 +52,29 @@
                 <span class="number"></span>
                 <span class="number"></span>
             </div>
-            <button id="generate-btn">Generate Numbers</button>
-            <h3>Previous Draws</h3>
-            <ul id="previous-draws"></ul>
-        </div>
+            <button id="generate-btn" class="btn-primary">Generate Lucky Numbers</button>
+            <div class="history-container">
+                <h3>Previous Draws</h3>
+                <ul id="previous-draws"></ul>
+            </div>
+        </section>
 
+        <section class="contact-section">
             <h2>Partnership Inquiry</h2>
-            <form action="https://formspree.io/f/mdalvpob" method="POST">
+            <form action="https://formspree.io/f/mdalvpob" method="POST" class="contact-form">
                 <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="email" name="email" placeholder="Your Email Address" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <textarea name="message" placeholder="How can we help you?" required></textarea>
                 </div>
-                <button type="submit" id="submit-btn">Send Inquiry</button>
+                <button type="submit" id="submit-btn" class="btn-secondary">Send Message</button>
             </form>
-        </div>
+        </section>
 
-        <div id="disqus_thread" style="margin-top: 50px;"></div>
+        <div id="disqus_thread"></div>
         <script>
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            /*
-            var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
+            (function() {
             var d = document, s = d.createElement('script');
             s.src = 'https://productbuilder1-5.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
@@ -71,7 +82,6 @@
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <script id="dsq-count-scr" src="//productbuilder1-5.disqus.com/count.js" async></script>
     </div>
     <script src="main.js"></script>
 </body>

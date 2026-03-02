@@ -1,4 +1,3 @@
-
 // Theme Toggle
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
@@ -36,11 +35,15 @@ generateBtn.addEventListener('click', () => {
 const URL = "https://teachablemachine.withgoogle.com/models/1IuuXyyng/";
 let model, maxPredictions;
 
-const uploadBtn = document.getElementById('upload-btn');
+const dropArea = document.getElementById('drop-area');
 const imageUpload = document.getElementById('image-upload');
+const uploadBtn = document.getElementById('upload-btn');
 const imagePreview = document.getElementById('image-preview');
+const imagePreviewContainer = document.getElementById('image-preview-container');
 const resultContainer = document.getElementById('result-container');
 const loadingText = document.getElementById('loading');
+const animalHistoryList = document.getElementById('animal-history-list');
+const recentAnimalResults = document.getElementById('recent-animal-results');
 
 async function init() {
     const modelURL = URL + "model.json";
@@ -49,17 +52,43 @@ async function init() {
     maxPredictions = model.getTotalClasses();
 }
 
-uploadBtn.addEventListener('click', () => {
-    imageUpload.click();
+// Drag and Drop Logic
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, preventDefaults, false);
 });
 
-imageUpload.addEventListener('change', async (event) => {
-    const file = event.target.files[0];
-    if (file) {
+function preventDefaults (e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+['dragenter', 'dragover'].forEach(eventName => {
+    dropArea.addEventListener(eventName, () => dropArea.classList.add('highlight'), false);
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, () => dropArea.classList.remove('highlight'), false);
+});
+
+dropArea.addEventListener('drop', handleDrop, false);
+
+function handleDrop(e) {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    handleFiles(files);
+}
+
+uploadBtn.addEventListener('click', () => imageUpload.click());
+imageUpload.addEventListener('change', (e) => handleFiles(e.target.files));
+
+function handleFiles(files) {
+    const file = files[0];
+    if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
         reader.onload = async (e) => {
             imagePreview.src = e.target.result;
-            imagePreview.style.display = 'block';
+            imagePreviewContainer.style.display = 'block';
+            dropArea.style.display = 'none';
             
             if (!model) {
                 loadingText.style.display = 'block';
@@ -70,15 +99,13 @@ imageUpload.addEventListener('change', async (event) => {
         };
         reader.readAsDataURL(file);
     }
-});
+}
 
 async function predict() {
     loadingText.style.display = 'block';
     resultContainer.innerHTML = '';
     
-    // Prediction 1: run input through teachable machine model
     const prediction = await model.predict(imagePreview);
-    
     loadingText.style.display = 'none';
     
     prediction.sort((a, b) => b.probability - a.probability);
@@ -86,16 +113,48 @@ async function predict() {
     const topResult = prediction[0];
     const percentage = (topResult.probability * 100).toFixed(0);
     
-    let animalType = topResult.className;
-    let message = "";
+    // UI Upgrade: Show detailed bars
+    let html = `<div class="result-header">
+        <h2>You are ${percentage}% ${topResult.className}!</h2>
+    </div>`;
     
-    if (animalType === "Dog") {
-        message = `🐶 You look like a Dog! (${percentage}%)`;
-    } else if (animalType === "Cat") {
-        message = `🐱 You look like a Cat! (${percentage}%)`;
-    } else {
-        message = `${animalType} look! (${percentage}%)`;
-    }
+    prediction.forEach(p => {
+        const prob = (p.probability * 100).toFixed(0);
+        html += `
+            <div class="prediction-bar-container">
+                <div class="prediction-label">
+                    <span>${p.className === 'Dog' ? '🐶' : '🐱'} ${p.className}</span>
+                    <span>${prob}%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${prob}%; background-color: ${p.className === 'Dog' ? '#4CAF50' : '#2196F3'}"></div>
+                </div>
+            </div>
+        `;
+    });
     
-    resultContainer.innerHTML = message;
+    html += `<button onclick="resetTest()" class="btn-secondary" style="margin-top: 20px;">Try Another Photo</button>`;
+    
+    resultContainer.innerHTML = html;
+    
+    // Add to history
+    addToHistory(topResult.className, percentage);
 }
+
+function addToHistory(type, percentage) {
+    recentAnimalResults.style.display = 'block';
+    const li = document.createElement('li');
+    const now = new Date().toLocaleTimeString();
+    li.innerHTML = `<span>${type === 'Dog' ? '🐶' : '🐱'} ${type} (${percentage}%)</span> <small>${now}</small>`;
+    animalHistoryList.prepend(li);
+}
+
+function resetTest() {
+    imagePreviewContainer.style.display = 'none';
+    dropArea.style.display = 'block';
+    resultContainer.innerHTML = '';
+    imageUpload.value = '';
+}
+
+// Global exposure for reset
+window.resetTest = resetTest;
